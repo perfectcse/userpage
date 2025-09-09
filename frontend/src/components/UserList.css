@@ -1,0 +1,59 @@
+.userlist-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.userlist-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.loading, .no-users {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.user-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-item {
+  background-color: #f9f9f9;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.user-item div {
+  margin: 4px 0;
+}
+
+.user-item strong {
+  color: #555;
+}
+
+@media (max-width: 480px) {
+  .userlist-container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .user-item {
+    padding: 12px;
+  }
+}

@@ -3,17 +3,23 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
 }
 
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  will-change: filter, transform;
+  transition: filter 300ms ease, transform 300ms ease;
+  cursor: pointer;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
+  transform: scale(1.05);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -34,9 +40,44 @@
 }
 
 .card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   padding: 2em;
+  margin: 1rem auto;
+  max-width: 600px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .read-the-docs {
-  color: #888;
+  color: #666;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.read-the-docs:hover {
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+  
+  .card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .logo {
+    height: 4.5em;
+    padding: 1em;
+  }
 }

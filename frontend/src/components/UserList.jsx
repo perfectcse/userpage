@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./UserList.css"; // Create this CSS file
+import "./UserList.css";
 
-const UserList = ({ reload }) => {
+const UserList = ({ reload, onUserDeleted }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch users from the backend
   useEffect(() => {
     setLoading(true);
     axios.get("http://localhost:5000/api/users")
@@ -19,6 +20,21 @@ const UserList = ({ reload }) => {
       });
   }, [reload]);
 
+  // Handle delete operation
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      axios.delete(`http://localhost:5000/api/users/${id}`)
+        .then(() => {
+          alert("User deleted successfully");
+          setUsers(users.filter(user => user._id !== id));
+          onUserDeleted(); // Optional callback to parent if needed
+        })
+        .catch(() => {
+          alert("Failed to delete user");
+        });
+    }
+  };
+
   return (
     <div className="userlist-container">
       <h2>Registered Users</h2>
@@ -28,12 +44,18 @@ const UserList = ({ reload }) => {
         <div className="no-users">No users found.</div>
       ) : (
         <ul className="user-list">
-          {users.map((user, index) => (
-            <li key={index} className="user-item">
+          {users.map((user) => (
+            <li key={user._id} className="user-item">
               <div><strong>Name:</strong> {user.name}</div>
               <div><strong>City:</strong> {user.city}</div>
               <div><strong>Phone:</strong> {user.phone}</div>
               <div><strong>Email:</strong> {user.email}</div>
+              <button 
+                className="delete-btn" 
+                onClick={() => handleDelete(user._id)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
